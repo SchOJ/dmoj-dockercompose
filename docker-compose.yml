@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+  db:
+    image: mariadb
+    container-name: oj-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Your_DB_passworD
+    volume:
+      - $PWD/data/mysql:/var/lib/mysql
+  
+  site:
+    image: dmoj-site
+    container-name: oj-site
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 9999:9999
+      - 9998:9998
+      - 15100:15100
+      - 15101:15101
+      - 15102:15102
+    volume:
+      - $PWD/data/site:/site
+  
+  judge:
+    image: dmoj-judge
+    container-name: oj-judger
+    privileged: true
+    restart: always
+    depends_on:
+      - site
+    volume:
+      - $PWD/data/problems:/problems
