@@ -6,7 +6,7 @@ services:
     container-name: oj-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Your_DB_passworD
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
     volume:
       - $PWD/data/mysql:/var/lib/mysql
   
