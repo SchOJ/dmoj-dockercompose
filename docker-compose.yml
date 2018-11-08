@@ -1,15 +1,6 @@
 version: '3.1'
 
 services:
-  db:
-    build: ./build/db
-    container-name: oj-db
-    restart: always
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
-    volume:
-      - $PWD/data/mysql:/var/lib/mysql
-  
   site:
     build: ./build/site
     container-name: oj-site
@@ -22,8 +13,9 @@ services:
       - 15100:15100
       - 15101:15101
       - 15102:15102
-    volume:
+    volumes:
       - $PWD/data/site:/site
+      - $PWD/data/mysql:/var/lib/mysql
   
   judge:
     build: ./build/judge
@@ -32,5 +24,5 @@ services:
     restart: always
     depends_on:
       - site
-    volume:
+    volumes:
       - $PWD/data/problems:/problems
