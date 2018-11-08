@@ -3,6 +3,7 @@ version: '3.1'
 services:
   site:
     build: ./build/site
+#   image: schoj/site
     container-name: oj-site
     restart: always
     ports:
@@ -16,9 +17,11 @@ services:
     volumes:
       - $PWD/data/site:/site
       - $PWD/data/mysql:/var/lib/mysql
+      - $PWD/data/problems:/problems
   
   judge:
     build: ./build/judge
+#   image: schoj/judge
     container-name: oj-judger
     privileged: true
     restart: always
