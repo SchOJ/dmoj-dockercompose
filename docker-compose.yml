@@ -4,7 +4,7 @@ services:
   site:
     build: ./build/site
 #   image: schoj/site
-    container-name: oj-site
+    container_name: oj-site
     restart: always
     ports:
       - 80:80
@@ -22,7 +22,7 @@ services:
   judge:
     build: ./build/judge
 #   image: schoj/judge
-    container-name: oj-judger
+    container_name: oj-judger
     privileged: true
     restart: always
     depends_on:
