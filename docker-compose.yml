@@ -29,3 +29,4 @@ services:
       - site
     volumes:
       - $PWD/data/problems:/problems
+    env_file: judge1.env
