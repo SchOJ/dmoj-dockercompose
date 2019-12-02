@@ -1,9 +1,9 @@
-version: '3.1'
+version: "3.1"
 
 services:
   site:
     build: ./build/site
-#   image: schoj/site
+    #   image: schoj/site
     container_name: oj-site
     restart: always
     ports:
@@ -16,12 +16,13 @@ services:
       - 15102:15102
     volumes:
       - $PWD/data/site:/site
-      - $PWD/data/mysql:/var/lib/mysql
       - $PWD/data/problems:/problems
-  
+    links:
+      - db
+
   judge:
     build: ./build/judge
-#   image: schoj/judge
+    #   image: schoj/judge
     container_name: oj-judger
     privileged: true
     restart: always
@@ -30,3 +31,10 @@ services:
     volumes:
       - $PWD/data/problems:/problems
     env_file: judge1.env
+
+  db:
+    image: mariadb:10.3.10
+    environment:
+      - MYSQL_ROOT_PASSWORD=dmoj
+    volumes:
+      - ./database:/var/lib/mysql
