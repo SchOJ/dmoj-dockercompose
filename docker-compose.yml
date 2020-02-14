@@ -37,4 +37,4 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=dmoj
     volumes:
-      - ./database:/var/lib/mysql
+      - $PWD/data/database:/var/lib/mysql
