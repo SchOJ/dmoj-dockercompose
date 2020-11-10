@@ -17,7 +17,7 @@ services:
     volumes:
       - $PWD/data/site:/site
       - $PWD/data/problems:/problems
-    links:
+    depends_on:
       - db
 
   judge:
