@@ -36,5 +36,7 @@ services:
     image: mariadb:10.3.10
     environment:
       - MYSQL_ROOT_PASSWORD=dmoj
+      - MYSQL_DATABASE=dmoj
     volumes:
       - $PWD/data/database:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
