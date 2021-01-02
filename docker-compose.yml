@@ -6,6 +6,8 @@ services:
     #   image: schoj/site
     container_name: oj-site
     restart: always
+    environment:
+      - WAIT_HOSTS=db:3306
     ports:
       - 80:80
       - 443:443
